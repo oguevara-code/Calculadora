@@ -1,19 +1,33 @@
 import cgi
 import re
 
+print("Content-Type: text/html\n")
+
 formulario = cgi.FieldStorage()
 expresion = formulario.getvalue("expresion")
 
 print("<html>")
+print("<head>")
+print("<title>Resultado</title>")
+print("</head>")
 print("<body>")
 
-patron = "[0-9+*/-]+"
+print("<h2>Resultado de la calculadora</h2>")
 
-if re.match(patron, expresion):
-    resultado = eval(expresion)
-    print("Resultado:", resultado)
+patron = r'^[0-9+\-*/(). ]+$'
+
+if expresion and re.match(patron, expresion):
+    try:
+        resultado = eval(expresion)
+        print("<p>Expresión:", expresion, "</p>")
+        print("<p>Resultado:", resultado, "</p>")
+    except ZeroDivisionError:
+        print("<p>Error: división entre cero</p>")
+    except:
+        print("<p>Error al calcular la expresión</p>")
 else:
-    print("Error")
+    print("<p>Expresión no válida</p>")
+
 
 print("</body>")
 print("</html>")
