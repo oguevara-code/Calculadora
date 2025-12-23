@@ -8,7 +8,8 @@ expresion = formulario.getvalue("expresion")
 
 print("<html>")
 print("<head>")
-print("<title>Resultado</title>")
+print("<title>Calculadora</title>")
+print('<link rel="stylesheet" href="/css/estilos.css">')
 print("</head>")
 print("<body>")
 
@@ -27,7 +28,6 @@ if expresion and re.match(patron, expresion):
         print("<p>Error al calcular la expresión</p>")
 else:
     print("<p>Expresión no válida</p>")
-
 
 print("</body>")
 print("</html>")
